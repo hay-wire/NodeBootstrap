@@ -1,0 +1,1 @@
+# this file is here to ensure that logs folder is committed in git and pushed around. however, the files inside of logs/ should ideally be ignored.
