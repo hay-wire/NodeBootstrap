@@ -1,7 +1,7 @@
 /**
  * Created by haywire on 14/08/15.
  */
-var UserModel = require('./Models/UserUtils');
+var UserModel = require('./../models/UsersUtils');
 
 exports.sayHi = function(req, res, next) {
     res.send('Howdy from User Controller!');
