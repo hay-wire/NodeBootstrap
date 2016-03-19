@@ -10,9 +10,6 @@ module.exports = {
 		maxHttpConnections: 1000,
 		maxFSDescriptor: 1000
 	},
-	filters: {
-		deliveryCapping: true
-	},
 	mongo: {
 		hosts: [ '127.0.0.1' ],
 		dbname: 'mydatabase',
