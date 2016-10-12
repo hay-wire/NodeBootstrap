@@ -9,16 +9,26 @@ var poolCluster = mysql.createPool(global.config.mysql.cluster[0]);
 debug('connected to mysql');
 
 var queryDB = function(query, cb) {
-    poolCluster.getConnection(function(err, connection) {
-        if(err) {
-            cb(err, null);
-        }
-        else {
-            connection.query(query, function (err, rows) {
-                connection.release();
-                cb(err, rows);
-            });
-        }
+    return new Promise(function(resolve, reject){
+        poolCluster.getConnection(function(err, connection) {
+            if(err) {
+                if(!cb){
+                    reject(err);
+                    return;
+                }
+                cb(err, null);
+            }
+            else {
+                connection.query(query, function (err, rows) {
+                    connection.release();
+                    if(!cb){
+                        resolve(rows);
+                        return;
+                    }
+                    cb(err, rows);
+                });
+            }
+        });
     });
 };
 
